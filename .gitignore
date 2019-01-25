@@ -5,16 +5,14 @@
 *.suo
 *.user
 *.sln.docstates
-
 # Build results
-[Dd]ebug/
 [Dd]ebugPublic/
 [Rr]elease/
 [Rr]eleases/
 x64/
 x86/
 bld/
-[Bb]in/
+#[Bb]in/
 [Oo]bj/
 build/
 
@@ -243,3 +241,7 @@ NuGetBuild
 WiX.Toolset.DummyFile.txt
 nunit-*.xml
 GitHubVS.sln.DotSettings
+
+notWormsLauncher/bin/Debug/notWormsLauncher\.exe\.config
+
+notWormsLauncher/bin/Debug/websocket-sharp\.dll
