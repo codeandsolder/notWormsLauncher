@@ -39,7 +39,7 @@
             this.nicknameBox = new System.Windows.Forms.TextBox();
             this.nicknameButton = new System.Windows.Forms.Button();
             this.availableCheckbox = new System.Windows.Forms.CheckBox();
-            this.button3 = new System.Windows.Forms.Button();
+            this.challengeButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // connectButton
@@ -142,22 +142,23 @@
             this.availableCheckbox.UseVisualStyleBackColor = true;
             this.availableCheckbox.CheckedChanged += new System.EventHandler(this.availableCheckbox_CheckedChanged);
             // 
-            // button3
+            // challengeButton
             // 
-            this.button3.Location = new System.Drawing.Point(260, 270);
-            this.button3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(62, 20);
-            this.button3.TabIndex = 10;
-            this.button3.Text = "Invite";
-            this.button3.UseVisualStyleBackColor = true;
+            this.challengeButton.Location = new System.Drawing.Point(260, 270);
+            this.challengeButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.challengeButton.Name = "challengeButton";
+            this.challengeButton.Size = new System.Drawing.Size(62, 22);
+            this.challengeButton.TabIndex = 10;
+            this.challengeButton.Text = "Challenge";
+            this.challengeButton.UseVisualStyleBackColor = true;
+            this.challengeButton.Click += new System.EventHandler(this.challengeButton_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(333, 298);
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.challengeButton);
             this.Controls.Add(this.availableCheckbox);
             this.Controls.Add(this.nicknameButton);
             this.Controls.Add(this.nicknameBox);
@@ -193,7 +194,7 @@
         private System.Windows.Forms.TextBox nicknameBox;
         private System.Windows.Forms.Button nicknameButton;
         private System.Windows.Forms.CheckBox availableCheckbox;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button challengeButton;
     }
 }
 

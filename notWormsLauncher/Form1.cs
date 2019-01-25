@@ -41,15 +41,15 @@ namespace notWormsLauncher
         private bool trySetName() {
             string name = nicknameBox.Text;
             if (name.Contains('/')) {
-                MessageBox.Show("Invalid character in name: /");
+                MessageBox.Show("Invalid character in name: /", "Error!");
                 return false;
             }
             if (clientListbox.Items.Contains(name)) {
-                MessageBox.Show("Name is in use!");
+                MessageBox.Show("Name is in use!", "Error!");
                 return false;
             }
             if (!string.IsNullOrEmpty(name) && connected) {
-                client.Send("n " + name);
+                client.Send("s " + name);
                 return true;
             }
             return false;
@@ -65,24 +65,39 @@ namespace notWormsLauncher
         }
         private void handleMessage(MessageEventArgs a) {
             Console.WriteLine(a.Data);
-            string arguments = a.Data.Substring(2);
+            string argument = a.Data.Substring(2);
             switch (a.Data[0]) {
                 case 't':
                     if(!trySetName())
                         this.Invoke((MethodInvoker)delegate {
-                            this.nicknameBox.Text = arguments;
+                            this.nicknameBox.Text = argument;
                         });
                     break;
                 case 'l':
                     this.Invoke((MethodInvoker)delegate {
                         this.clientListbox.Items.Clear();
                     });
-                    foreach (string player in arguments.Split('/')) {
-                        if (player != nicknameBox.Text)
+                    foreach (string player in argument.Split('/')) {
+                        if (player != nicknameBox.Text && player != "")
                             this.Invoke((MethodInvoker)delegate {
                                 this.clientListbox.Items.Add(player);
                             });
                     }
+                    break;
+                case 'c':
+                    DialogResult accepted = MessageBox.Show("You have been challenged by: " + argument + "\nDo you accept?", "You have been challenged!", MessageBoxButtons.YesNo);
+                    if (accepted == DialogResult.Yes) {
+                        client.Send("y " + argument);
+                        //starting game goes here
+                    } else if (accepted == DialogResult.No) {
+                        client.Send("n " + argument);
+                    }
+                    break;
+                case 'n':
+                    MessageBox.Show(argument + " has rejected your challenge :(", "Challenge rejected.");
+                    break;
+                case 'y':
+                    MessageBox.Show(argument + " has accepted your challenge :)", "Challenge accepted.");
                     break;
             }
         }
@@ -106,6 +121,12 @@ namespace notWormsLauncher
         
         private void availableCheckbox_CheckedChanged(object sender, EventArgs e) {
             sendAvailability();
+        }
+
+        private void challengeButton_Click(object sender, EventArgs e) {
+            string target = clientListbox.GetItemText(clientListbox.SelectedItem);
+            if (target != "")
+                client.Send("c " + target);
         }
     }
 }
