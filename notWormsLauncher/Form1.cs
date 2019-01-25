@@ -34,6 +34,7 @@ namespace notWormsLauncher
 
         private void handleConnected() {
             connected = true;
+            client.Send("l True");
             sendAvailability();
             this.Invoke((MethodInvoker)delegate {
                 this.serverLabel.Text = "Server state: connected";
