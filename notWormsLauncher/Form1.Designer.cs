@@ -40,6 +40,7 @@
             this.nicknameButton = new System.Windows.Forms.Button();
             this.availableCheckbox = new System.Windows.Forms.CheckBox();
             this.challengeButton = new System.Windows.Forms.Button();
+            this.debug = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // connectButton
@@ -153,11 +154,23 @@
             this.challengeButton.UseVisualStyleBackColor = true;
             this.challengeButton.Click += new System.EventHandler(this.challengeButton_Click);
             // 
+            // debug
+            // 
+            this.debug.Location = new System.Drawing.Point(14, 271);
+            this.debug.Name = "debug";
+            this.debug.Size = new System.Drawing.Size(75, 23);
+            this.debug.TabIndex = 11;
+            this.debug.TabStop = false;
+            this.debug.Text = "debug";
+            this.debug.UseVisualStyleBackColor = true;
+            this.debug.Click += new System.EventHandler(this.debug_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(333, 298);
+            this.Controls.Add(this.debug);
             this.Controls.Add(this.challengeButton);
             this.Controls.Add(this.availableCheckbox);
             this.Controls.Add(this.nicknameButton);
@@ -195,6 +208,7 @@
         private System.Windows.Forms.Button nicknameButton;
         private System.Windows.Forms.CheckBox availableCheckbox;
         private System.Windows.Forms.Button challengeButton;
+        private System.Windows.Forms.Button debug;
     }
 }
 

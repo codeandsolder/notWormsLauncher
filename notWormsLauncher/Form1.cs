@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -63,6 +65,14 @@ namespace notWormsLauncher
 
         private void Form1_Load(object sender, EventArgs e) {
         }
+        private void runGame(string args) {
+            ProcessStartInfo start = new ProcessStartInfo();
+            start.FileName = "python";
+            start.Arguments = "game.py " + args;
+            start.UseShellExecute = true;
+            using (Process process = Process.Start(start)) {
+            }
+        }
         private void handleMessage(MessageEventArgs a) {
             Console.WriteLine(a.Data);
             string argument = a.Data.Substring(2);
@@ -97,7 +107,7 @@ namespace notWormsLauncher
                     MessageBox.Show(argument + " has rejected your challenge :(", "Challenge rejected.");
                     break;
                 case 'y':
-                    MessageBox.Show(argument + " has accepted your challenge :)", "Challenge accepted.");
+                    runGame(client.Url.OriginalString + " " + nicknameBox.Text);
                     break;
             }
         }
@@ -127,6 +137,11 @@ namespace notWormsLauncher
             string target = clientListbox.GetItemText(clientListbox.SelectedItem);
             if (target != "")
                 client.Send("c " + target);
+        }
+
+        private void debug_Click(object sender, EventArgs e) {
+            runGame(client.Url.OriginalString + " " + nicknameBox.Text);
+            runGame("");
         }
     }
 }
