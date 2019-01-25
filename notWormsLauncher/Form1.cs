@@ -142,7 +142,6 @@ namespace notWormsLauncher
 
         private void debug_Click(object sender, EventArgs e) {
             runGame(client.Url.OriginalString + " " + nicknameBox.Text);
-            runGame("");
         }
     }
 }
